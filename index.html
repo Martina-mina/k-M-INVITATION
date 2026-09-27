@@ -131,7 +131,8 @@ button{font:inherit}
 .hero{
   min-height:100dvh;
   display:flex;
-  justify-content:center;
+  flex-direction:column;
+  justify-content:space-between;
   align-items:center;
   text-align:center;
   padding:40px 20px;
@@ -144,6 +145,13 @@ button{font:inherit}
   content:"";position:absolute;width:170px;height:170px;border:1px solid var(--line);border-radius:50%;
 }
 .hero:before{top:35px;left:-90px}.hero:after{bottom:35px;right:-90px}
+
+/* الديف الفاضي لحماية ملامح الصورة */
+.hero-spacer {
+  height: 180px;
+  width: 100%;
+}
+
 .hero-inner{
   position:relative;
   z-index:2;
@@ -190,8 +198,6 @@ button{font:inherit}
   text-align:center;
   width:100%;
 }
-.divider{display:flex;align-items:center;gap:12px;justify-content:center;margin:20px auto;max-width:340px;color:var(--gold)}
-.divider:before,.divider:after{content:"";height:1px;background:var(--line);flex:1}
 .scroll{margin-top:35px;font-size:clamp(10px,2.8vw,12px);letter-spacing:3px;text-transform:uppercase;color:var(--muted);animation:bounce 1.8s infinite}
 @keyframes bounce{50%{transform:translateY(8px)}}
 
@@ -218,17 +224,13 @@ button{font:inherit}
 .detail .icon{font-size:30px;color:var(--gold-dark)}
 .detail h3{font-size:clamp(19px,4.2vw,25px);margin:10px 0 4px;font-weight:500;color:var(--wine-deep)}
 .detail p{font-size:clamp(14px,3.2vw,17px);color:var(--muted);margin:4px 0}
-.mapbtn,.rsvpbtn{
+.mapbtn{
   display:inline-block;margin-top:30px;padding:12px 28px;
   border:1px solid var(--wine);color:var(--wine-deep);text-decoration:none;
   letter-spacing:2px;text-transform:uppercase;font-size:clamp(11px,2.8vw,13px);
   transition:.25s;background:transparent;
 }
-.mapbtn:hover,.rsvpbtn:hover{background:var(--wine);color:white;border-color:var(--wine)}
-
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:900px;margin:35px auto}
-.gallery img{width:100%;aspect-ratio:1;object-fit:cover;cursor:pointer;transition:transform .3s}
-.gallery img:hover{transform:scale(1.02)}
+.mapbtn:hover{background:var(--wine);color:white;border-color:var(--wine)}
 
 .countdown{
   display:flex;justify-content:center;align-items:stretch;
@@ -253,23 +255,19 @@ button{font:inherit}
   box-shadow:0 8px 20px rgba(74,15,38,.2)
 }
 
-.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:200;display:none;place-items:center;padding:20px}
-.lightbox.show{display:grid}
-.lightbox img{max-width:95vw;max-height:90vh;object-fit:contain}
-.close{position:absolute;right:20px;top:15px;color:white;font-size:35px;cursor:pointer}
-
 @media(max-width:650px){
+  .hero-spacer { height: 140px; }
   .couple{grid-template-columns:1fr 1fr;gap:10px}
   .card{padding:8px}
   .details{max-width:340px}
   .detail{max-width:340px;flex:1 1 100%}
-  .gallery{grid-template-columns:repeat(2,1fr)}
   .section{padding:65px 16px}
   .countdown{gap:8px}
   .timebox{padding:10px 4px}
 }
 
 @media(max-width:400px){
+  .hero-spacer { height: 110px; }
   .countdown{gap:6px}
   .timebox{padding:8px 3px}
 }
@@ -296,6 +294,9 @@ button{font:inherit}
 
 <main class="site" id="site" aria-hidden="true">
   <section class="hero">
+    <!-- الديف الفاضي لترك المساحة للصورة فوق النص -->
+    <div class="hero-spacer"></div>
+
     <div class="hero-inner">
       <div class="script">Together with their families</div>
       <div class="kicker">invite you to celebrate</div>
@@ -304,7 +305,7 @@ button{font:inherit}
       <div class="scroll">Scroll to discover ↓</div>
     </div>
   </section>
- <div class="New" style="height: 180px; width: 100%;"></div>
+
   <section class="section alt">
     <div class="flower">❦</div>
     <h2>Save the date</h2>
@@ -348,11 +349,6 @@ button{font:inherit}
 
 <button class="music" id="musicBtn" aria-label="Toggle music">♪</button>
 
-<div class="lightbox" id="lightbox">
-  <span class="close" id="closeLightbox">×</span>
-  <img id="lightboxImg" src="" alt="">
-</div>
-
 <script>
 const opening = document.getElementById("opening");
 const envelope = document.getElementById("openEnvelope");
@@ -373,7 +369,7 @@ envelope.addEventListener("keydown", e => {
 });
 document.body.style.overflow = "hidden";
 
-/* Countdown — CHANGE THIS DATE */
+/* Countdown */
 const weddingDate = new Date("October 25, 2026 20:00:00").getTime();
 
 function updateCountdown(){
@@ -395,20 +391,6 @@ function updateCountdown(){
 }
 updateCountdown();
 setInterval(updateCountdown,1000);
-
-/* Gallery lightbox */
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightboxImg");
-document.querySelectorAll(".gallery img").forEach(img => {
-  img.addEventListener("click", () => {
-    lightboxImg.src = img.src;
-    lightbox.classList.add("show");
-  });
-});
-document.getElementById("closeLightbox").onclick = () => lightbox.classList.remove("show");
-lightbox.addEventListener("click", e => {
-  if(e.target === lightbox) lightbox.classList.remove("show");
-});
 
 document.getElementById("musicBtn").onclick = () => {
   alert("To add music: place music.mp3 inside assets and connect it in the JavaScript.");
