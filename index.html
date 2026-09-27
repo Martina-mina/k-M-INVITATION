@@ -129,8 +129,13 @@ button{font:inherit}
 }
 .site[aria-hidden="true"]{height:100vh;overflow:hidden}
 .hero{
-  min-height:100dvh;display:grid;place-items:center;text-align:center;
-  padding:70px 20px;position:relative;
+  min-height:100dvh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:40px 20px;
+  position:relative;
   background:
     linear-gradient(rgba(248,238,240,0.55),rgba(253,247,248,0.55)),
     url("assets/heroo.png") center/cover;
@@ -139,14 +144,55 @@ button{font:inherit}
   content:"";position:absolute;width:170px;height:170px;border:1px solid var(--line);border-radius:50%;
 }
 .hero:before{top:35px;left:-90px}.hero:after{bottom:35px;right:-90px}
-.hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:0;max-width:100%;padding:0 10px}
-.script{font-family:"Great Vibes",cursive;color:var(--gold-dark);font-size:clamp(30px,10vw,72px);line-height:1.15;max-width:90vw}
-.kicker{letter-spacing:3px;text-transform:uppercase;font-size:clamp(13px,3.6vw,22px);margin:16px 0 6px;color:var(--wine)}
-.names{font-size:clamp(46px,12vw,96px);font-weight:500;line-height:1;margin:20px 0;color:var(--wine-deep)}
-.date{font-size:clamp(15px,4.2vw,28px);letter-spacing:clamp(1px,0.6vw,3px);color:var(--muted);white-space:normal}
-.divider{display:flex;align-items:center;gap:12px;justify-content:center;margin:24px auto;max-width:340px;color:var(--gold)}
+.hero-inner{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  width:100%;
+  max-width:800px;
+  margin:0 auto;
+  padding:0 15px;
+}
+.script{
+  font-family:"Great Vibes",cursive;
+  color:#6d1b3a;
+  font-size:clamp(32px,8vw,64px);
+  line-height:1.2;
+  text-align:center;
+  width:100%;
+}
+.kicker{
+  letter-spacing:3px;
+  text-transform:uppercase;
+  font-size:clamp(13px,3.2vw,20px);
+  margin:12px 0;
+  color:#4a0f26;
+  text-align:center;
+  width:100%;
+}
+.names{
+  font-size:clamp(40px,11vw,90px);
+  font-weight:500;
+  line-height:1.1;
+  margin:15px 0;
+  color:var(--wine-deep);
+  text-align:center;
+  width:100%;
+}
+.date{
+  font-size:clamp(14px,3.8vw,26px);
+  letter-spacing:clamp(1px,0.5vw,3px);
+  color:var(--muted);
+  text-align:center;
+  width:100%;
+}
+.divider{display:flex;align-items:center;gap:12px;justify-content:center;margin:20px auto;max-width:340px;color:var(--gold)}
 .divider:before,.divider:after{content:"";height:1px;background:var(--line);flex:1}
-.scroll{margin-top:45px;font-size:clamp(10px,2.8vw,12px);letter-spacing:3px;text-transform:uppercase;color:var(--muted);animation:bounce 1.8s infinite}
+.scroll{margin-top:35px;font-size:clamp(10px,2.8vw,12px);letter-spacing:3px;text-transform:uppercase;color:var(--muted);animation:bounce 1.8s infinite}
 @keyframes bounce{50%{transform:translateY(8px)}}
 
 .section{padding:80px 20px;max-width:1000px;margin:auto;text-align:center}
@@ -242,7 +288,7 @@ button{font:inherit}
       <div class="ornament"></div>
       <div class="flap"></div>
       <div class="pocket"></div>
-      <div class="seal" style="font: #52442e;">♥</div>
+      <div class="seal">♥</div>
       <div class="hint">CLICK THE SEAL TO OPEN</div>
     </div>
   </div>
@@ -251,13 +297,9 @@ button{font:inherit}
 <main class="site" id="site" aria-hidden="true">
   <section class="hero">
     <div class="hero-inner">
-      <div class="script" style="color : #6d1b3a" >Together with their families</div>
-      <div class="kicker" style="color :#4a0f26 ;">invite you to celebrate</div>
-
-      <div class="New" style="color: #ffffff00 ; padding: 180px"></div>
-
+      <div class="script">Together with their families</div>
+      <div class="kicker">invite you to celebrate</div>
       <div class="names">Kerolos &amp; Mirna</div>
-      <div class="divider" style="color: #ffffff00 ">♥</div>
       <div class="date">SUNDAY · 25 · October · 2026</div>
       <div class="scroll">Scroll to discover ↓</div>
     </div>
@@ -286,7 +328,7 @@ button{font:inherit}
         <div class="icon">✦</div>
         <h3>Location</h3>
         <p>St. George Church</p>
-        <p>Al-Batanun </p>
+        <p>Al-Batanun</p>
       </div>
     </div>
 
